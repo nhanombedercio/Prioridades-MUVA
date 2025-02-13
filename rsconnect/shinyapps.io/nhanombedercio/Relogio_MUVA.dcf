@@ -1,0 +1,12 @@
+name: Relogio_MUVA
+title: Relogio_MUVA
+username: nhanombedercio
+account: nhanombedercio
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 13959046
+bundleId:
+url: https://nhanombedercio.shinyapps.io/Relogio_MUVA/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

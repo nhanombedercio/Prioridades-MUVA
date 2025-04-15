@@ -5,7 +5,7 @@ library(bslib)  # Para aplicar um tema baseado na identidade MUVA
 # Definir a data de início e data final (90 dias após 3 de fevereiro)
 data_inicio <- as.POSIXct("2025-02-01", format = "%Y-%m-%d", tz = "UTC")
 data_final <- data_inicio + days(90)
-  
+
 # Lista de prioridades com datas reais ajustadas
 prioridades <- list(
   list(nome = "Rever as responsabilidades dos PM e fazer kick-off de todos os projetos",
@@ -23,7 +23,7 @@ prioridades <- list(
   list(nome = "Mesa redonda sobre empregabilidade",
        deadline = as.POSIXct("2025-03-11", format = "%Y-%m-%d", tz = "UTC"),
        responsavel = "-",
-       Status= "Em Andamento"),
+       Status= "Concluído"),
   list(nome = "Política de RH",
        deadline = as.POSIXct("2025-03-28", format = "%Y-%m-%d", tz = "UTC"),
        responsavel = "Inocencio",
@@ -43,7 +43,7 @@ prioridades <- list(
   list(nome = "Calendário chinês digital",
        deadline = as.POSIXct("2025-04-30", format = "%Y-%m-%d", tz = "UTC"),
        responsavel = "Dercio",
-       Status= "Em Andamento"),
+       Status= "Concluído"),
   list(nome = "Novos encontros regulares para garantir melhor comunicação interna",
        deadline = as.POSIXct("2025-02-26", format = "%Y-%m-%d", tz = "UTC"),
        responsavel = "Direção e PMs",
@@ -119,10 +119,10 @@ server <- function(input, output, session) {
       progresso <- max(0, min(100, as.numeric(difftime(Sys.time(), data_inicio, units = "secs")) / as.numeric(difftime(p$deadline, data_inicio, units = "secs")) * 100))
       # Calcular o número de dias passados
       dias_passados <- as.numeric(difftime(Sys.time(), data_inicio, units = "days"))
-      
+
       # Calcular o total de dias do prazo
       dias_totais <- as.numeric(difftime(p$deadline, data_inicio, units = "days"))
-      
+
       cor_barra <- if (p$Status == "Concluído") {
         "progress-bar-success"  # Azul Escuro para indicar que a tarefa foi finalizada
       } else if (progresso >= 100 && p$Status != "Concluído") {
@@ -132,7 +132,7 @@ server <- function(input, output, session) {
       } else {
         "progress-bar-dark"  # Verde Vibrante para progresso normal
       }
-      
+
       tags$head(
         tags$style(HTML("
       .progress-bar-success { background-color: #004085 !important; } /* Azul Escuro - Concluído */
@@ -142,8 +142,8 @@ server <- function(input, output, session) {
       .progress-bar-dark { background-color: #000000 !important; color: white !important; } /* Preto - Sem progresso ou bloqueado */
   "))
       )
-      
-      
+
+
 
       tagList(
         h5(paste(p$nome, "- Data limite:", format(p$deadline, "%d/%m/%Y"), "---------Status:", p$Status)),
@@ -165,7 +165,7 @@ server <- function(input, output, session) {
         ),
         p(paste("Responsável:", p$responsavel), style = "font-size: 14px; color: #30E3CA;")
       )
-      
+
 
     })
   })
